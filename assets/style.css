@@ -1,0 +1,201 @@
+/* =====================================================================
+   STYLE.CSS — apparence de l'interface
+   Mobile d'abord : la page est pensée pour un téléphone,
+   puis élargie pour les grands écrans (voir @media en bas).
+   Pour changer les couleurs, modifiez seulement les variables ci-dessous.
+   ===================================================================== */
+
+:root {
+  --rouge: #D7141E;      /* couleur d'accent (charte du dossier) */
+  --encre: #17120F;      /* texte principal, fonds sombres */
+  --creme: #F3EDE3;      /* fond de page */
+  --papier: #FBF8F3;     /* fond des cartes */
+  --sable: #E6DFD3;      /* filets, séparateurs */
+  --doux: #4A433D;       /* texte secondaire */
+  --gris: #6D655E;       /* petits textes */
+  --rayon: 14px;         /* arrondi des cartes */
+  /* Polices système : aucun téléchargement, chargement immédiat */
+  --police: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 112px; } /* laisse la place à l'en-tête fixe */
+body {
+  margin: 0;
+  font-family: var(--police);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--encre);
+  background: var(--creme);
+  -webkit-text-size-adjust: 100%;
+}
+img { max-width: 100%; height: auto; display: block; }
+[hidden] { display: none !important; } /* garantit que les éléments masqués le restent */
+a { color: var(--rouge); }
+h1, h2, h3, h4 { line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 .5em; }
+h1 { font-size: 1.95rem; font-weight: 850; }
+h2 { font-size: 1.55rem; font-weight: 800; }
+h3 { font-size: 1.2rem; font-weight: 750; margin-top: 1.4em; }
+h4 { font-size: 1.05rem; font-weight: 750; }
+p { margin: 0 0 .8em; }
+.rouge { color: var(--rouge); }
+.petit { font-size: .88rem; color: var(--gris); }
+
+/* ---------- En-tête fixe + menu horizontal défilant ---------- */
+.entete {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--encre); color: var(--creme);
+  padding: 10px 16px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,.15);
+}
+.entete-ligne { display: flex; align-items: center; gap: 10px; }
+.badge {
+  background: var(--rouge); color: #fff;
+  font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 4px;
+}
+.entete-nom { font-weight: 700; font-size: .95rem; }
+.menu {
+  display: flex; gap: 6px; overflow-x: auto; padding: 10px 0 12px;
+  scrollbar-width: none;            /* masque la barre de défilement */
+}
+.menu::-webkit-scrollbar { display: none; }
+.menu a {
+  flex: none; text-decoration: none; color: #D9D1C7;
+  font-size: .9rem; font-weight: 600;
+  padding: 7px 13px; border-radius: 999px; border: 1px solid #3a332e;
+}
+.menu a.actif { background: var(--rouge); border-color: var(--rouge); color: #fff; }
+
+/* ---------- Sections ---------- */
+main { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+section { padding: 36px 0 28px; border-bottom: 1px solid var(--sable); }
+.surtitre {
+  color: var(--rouge); font-weight: 800; font-size: .78rem;
+  letter-spacing: .14em; text-transform: uppercase; margin-bottom: .4em;
+}
+
+/* Accueil */
+.hero { padding-top: 28px; }
+.hero-photo { margin-bottom: 16px; }
+.hero-photo img, .photo-vide {
+  width: 92px; height: 92px; border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--rouge);
+}
+.photo-vide { display: grid; place-items: center; background: var(--encre); color: var(--creme); font-size: 1.9rem; font-weight: 850; letter-spacing: .04em; }
+.chapo { font-size: 1.1rem; color: var(--doux); }
+
+/* Encarts */
+.encart {
+  background: var(--papier); border-left: 6px solid var(--rouge);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+  padding: 18px 18px 8px; margin: 20px 0;
+}
+.encart.sombre { background: var(--encre); color: var(--creme); border-left-color: var(--rouge); }
+.encart.sombre .etiquette { color: #FF6B63; }
+.grand { font-size: 1.2rem; font-weight: 750; line-height: 1.35; }
+.etiquette {
+  font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--rouge); margin-bottom: .3em;
+}
+blockquote {
+  margin: 16px 0; padding: 4px 0 4px 16px; border-left: 4px solid var(--rouge);
+  font-style: italic; font-size: 1.05rem;
+}
+
+/* Cartes en grille : 1 colonne sur mobile, 2 ou 3 sur grand écran */
+.grille { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 14px 0; }
+.carte {
+  background: var(--papier); border-radius: var(--rayon);
+  border-top: 5px solid var(--rouge);
+  padding: 16px 16px 6px;
+}
+.carte h3 { margin-top: 0; }
+.carte ul { padding-left: 1.1em; margin: 0 0 .8em; }
+.lien { display: inline-block; font-weight: 700; text-decoration: none; margin-bottom: 10px; }
+
+/* Grands chiffres */
+.chiffres { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+.chiffres div { background: var(--papier); border-radius: var(--rayon); padding: 14px; }
+.chiffres b { display: block; font-size: 1.7rem; font-weight: 850; color: var(--rouge); line-height: 1.1; }
+.chiffres span { font-size: .88rem; color: var(--doux); }
+
+/* Listes numérotées et étapes */
+.liste-num { padding-left: 1.3em; }
+.liste-num li { margin-bottom: .5em; }
+.etapes { list-style: none; counter-reset: e; padding: 0; margin: 14px 0; }
+.etapes li {
+  counter-increment: e; position: relative;
+  background: var(--papier); border-radius: var(--rayon);
+  padding: 12px 14px 12px 54px; margin-bottom: 8px;
+}
+.etapes li::before {
+  content: counter(e); position: absolute; left: 14px; top: 12px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--rouge); color: #fff; font-weight: 800;
+  display: grid; place-items: center; font-size: .9rem;
+}
+.etapes b { display: block; }
+
+/* Frise du brief */
+.frise { list-style: none; padding: 0; margin: 16px 0; border-left: 3px solid var(--rouge); }
+.frise li { padding: 0 0 12px 16px; position: relative; }
+.frise li::before {
+  content: ""; position: absolute; left: -8px; top: 6px;
+  width: 13px; height: 13px; border-radius: 50%; background: var(--rouge);
+}
+.frise b { display: block; }
+
+/* Tableaux : défilement horizontal si trop larges sur mobile */
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: .94rem; background: var(--papier); border-radius: var(--rayon); overflow: hidden; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--sable); vertical-align: top; }
+th { background: var(--encre); color: var(--creme); font-size: .82rem; letter-spacing: .04em; }
+
+/* Blocs dépliables */
+details { background: var(--papier); border-radius: var(--rayon); padding: 0 14px; margin: 14px 0; }
+summary { cursor: pointer; font-weight: 750; padding: 14px 0; list-style-position: inside; }
+details[open] { padding-bottom: 6px; }
+
+/* Galerie d'images */
+.galerie { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.galerie figure { margin: 0; background: var(--papier); border-radius: var(--rayon); overflow: hidden; }
+.galerie figcaption { padding: 10px 12px; font-size: .9rem; color: var(--doux); }
+
+/* Barres du budget : la largeur vient de la variable --v (0 à 100) */
+.barres { list-style: none; padding: 0; margin: 14px 0; }
+.barres li { margin-bottom: 8px; font-size: .9rem; }
+.barres li span { display: block; }
+.barres li::after {
+  content: ""; display: block; height: 12px; border-radius: 6px;
+  width: calc(var(--v) * 1%); background: var(--rouge); margin-top: 3px;
+}
+.barres li.gris::after { background: var(--doux); }
+.barres b { float: right; margin-top: -1.55em; }
+
+/* Emplacements à compléter : surlignés pour ne pas les oublier */
+.a-completer { background: #FFF2A8; outline: 2px dashed #E0B800; outline-offset: 2px; border-radius: 4px; }
+
+/* Pied de page */
+.pied { text-align: center; padding: 28px 16px 40px; color: var(--gris); font-size: .9rem; }
+.retour { display: inline-block; margin-top: 6px; font-weight: 700; text-decoration: none; }
+
+/* ---------- Grands écrans (tablette, ordinateur, vidéoprojecteur) ---------- */
+@media (min-width: 720px) {
+  body { font-size: 18px; }
+  h1 { font-size: 2.6rem; }
+  h2 { font-size: 1.9rem; }
+  .entete { padding: 12px 24px 0; }
+  main { padding: 0 24px; }
+  .grille { grid-template-columns: 1fr 1fr; }
+  .grille.trois { grid-template-columns: repeat(3, 1fr); }
+  .chiffres { grid-template-columns: repeat(4, 1fr); }
+  .galerie { grid-template-columns: 1fr 1fr; }
+  .galerie figure.large { grid-column: 1 / -1; }
+}
+
+/* Impression de l'interface (au cas où) : pas de menu */
+@media print {
+  .entete, .pied .retour { display: none; }
+  section { break-inside: avoid-page; }
+  details { display: block; }
+}
