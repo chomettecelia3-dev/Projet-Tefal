@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Passeport imprimable</title>
-  <!-- Mêmes informations que l'interface : tout se règle dans config.js -->
+  <title>Étiquettes « Passeport » à imprimer</title>
+  <meta name="robots" content="noindex, nofollow">
+  <!-- L'adresse du site (urlInterface) se règle dans config.js -->
   <script src="config.js"></script>
-  <!-- Générateur de QR code hors ligne (bibliothèque libre, licence MIT, aucun appel réseau) -->
+  <!-- Générateur de QR code hors ligne (bibliothèque libre, licence MIT) -->
   <script src="assets/qrcode.js"></script>
   <style>
     /* =================================================================
-       PASSEPORT IMPRIMABLE — une feuille A4 avec trois formats à découper :
-       ① l'étiquette « Passeport » à coller au dos de la poêle (70 × 81 mm),
-       ② la carte passeport A6 pour la pochette cartonnée (105 × 148 mm),
-       ③ une carte au format carte bancaire (85,6 × 54 mm).
-       Imprimez à 100 % (« taille réelle »), sans « ajuster à la page ».
+       ÉTIQUETTES « PASSEPORT » — une feuille A4 à découper :
+       ① trois étiquettes à coller au dos de la poêle (une par modèle),
+          chacune avec son QR code vers la bonne fiche ;
+       ② une collerette à accrocher au manche (poêles déjà en stock).
+       Imprimez à 100 % (« taille réelle »), en couleur.
        ================================================================= */
     :root { --rouge:#D7141E; --encre:#17120F; --creme:#F3EDE3; --doux:#4A433D; }
     * { box-sizing:border-box; margin:0; padding:0; }
@@ -22,200 +23,113 @@
            background:#d9d3c9; color:var(--encre);
            -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 
-    /* ---------- Barre d'outils (n'est pas imprimée) ---------- */
+    /* Barre d'outils : visible à l'écran, pas à l'impression */
     .outils { max-width:210mm; margin:16px auto; background:#fff; border-radius:10px; padding:14px 16px; font-size:14px; line-height:1.5; }
     .outils code { background:#f2eee8; padding:2px 6px; border-radius:4px; word-break:break-all; }
-    .outils button { font:inherit; font-weight:700; border:0; border-radius:8px; padding:9px 14px; margin:8px 8px 0 0; cursor:pointer; background:var(--encre); color:#fff; }
+    .outils button { font:inherit; font-weight:700; border:0; border-radius:8px; padding:8px 12px; margin:8px 6px 0 0; cursor:pointer; background:var(--encre); color:#fff; }
     .outils button.principal { background:var(--rouge); }
-    .alerte { background:#FFF2A8; border:2px dashed #E0B800; padding:8px 10px; border-radius:6px; margin-top:8px; }
 
-    /* ---------- La feuille A4 ---------- */
     .feuille { width:210mm; min-height:297mm; margin:0 auto 24px; background:#fff; padding:12mm;
                display:flex; flex-wrap:wrap; gap:8mm; align-content:flex-start; }
-    .decoupe { border:0.3mm dashed #b9b0a4; }            /* trait de découpe */
+    .decoupe { border:0.3mm dashed #b9b0a4; }
     .legende { width:100%; font-size:8pt; color:#8a8178; }
 
-    /* ① Étiquette « Passeport » : même visuel que dans les maquettes (bandeau rouge + QR) */
-    .etiquette { width:70mm; height:81mm; border-radius:5mm; overflow:hidden; background:#fff; display:flex; flex-direction:column; }
-    .etiquette .bande { background:var(--rouge); color:#fff; text-align:center; font-weight:900;
-                        letter-spacing:1mm; font-size:15pt; padding:3.2mm 0 2.8mm; }
-    .etiquette .qr { width:56mm; height:56mm; margin:3mm auto 0; }
-    .etiquette .sous { text-align:center; font-size:8pt; font-weight:700; margin-top:1.5mm; }
+    /* ① Étiquette dos de poêle : bandeau rouge + QR (visuel des maquettes) */
+    .etiquette { width:56mm; height:72mm; border-radius:5mm; overflow:hidden; background:#fff; display:flex; flex-direction:column; align-items:center; }
+    .etiquette .bande { width:100%; background:var(--rouge); color:#fff; text-align:center; font-weight:900; letter-spacing:.8mm; font-size:13pt; padding:2.6mm 0 2.2mm; }
+    .etiquette .modele { font-size:7.5pt; font-weight:800; letter-spacing:.3mm; text-transform:uppercase; margin-top:2mm; }
+    .etiquette .qr { width:44mm; height:44mm; margin-top:1mm; }
+    .etiquette .sous { font-size:7.5pt; font-weight:700; margin-top:1mm; }
 
-    /* ② Carte passeport A6 */
-    .carte-a6 { width:105mm; height:148mm; border-radius:4mm; overflow:hidden; background:var(--creme); display:flex; flex-direction:column; }
-    .carte-a6 .bande { background:var(--rouge); color:#fff; padding:4mm 6mm 3.5mm; display:flex; justify-content:space-between; align-items:center; }
-    .carte-a6 .bande b { font-size:13pt; font-weight:900; letter-spacing:1mm; }
-    .carte-a6 .bande span { font-size:7pt; opacity:.9; text-align:right; }
-    .carte-a6 .corps { padding:5mm 6mm 0; flex:1; display:flex; flex-direction:column; }
-    .identite { display:flex; gap:4mm; align-items:center; margin-bottom:4mm; }
-    .photo { width:22mm; height:22mm; border-radius:50%; background:var(--encre); border:0.6mm solid var(--rouge); overflow:hidden; display:grid; place-items:center; color:var(--creme); font-size:15pt; font-weight:850; flex:none; }
-    .photo img { width:100%; height:100%; object-fit:cover; }
-    .identite .nom { font-size:13pt; font-weight:850; line-height:1.1; }
-    .identite .info { font-size:7.5pt; color:var(--doux); margin-top:1mm; line-height:1.35; }
-    .titre-dossier { font-size:12pt; font-weight:850; line-height:1.15; margin-bottom:1.5mm; }
-    .titre-dossier em { font-style:normal; color:var(--rouge); }
-    .sous-titre { font-size:7.5pt; color:var(--doux); line-height:1.35; margin-bottom:3mm; }
-    .axes { display:flex; gap:2mm; margin-bottom:3mm; }
-    .axes div { flex:1; background:#fff; border-top:0.8mm solid var(--rouge); padding:1.6mm 2mm; font-size:7pt; line-height:1.3; }
-    .axes b { display:block; font-size:8.5pt; }
-    .pied-carte { display:flex; gap:4mm; align-items:flex-end; margin-top:auto; padding-bottom:5mm; }
-    .pied-carte .qr { width:36mm; height:36mm; background:#fff; padding:1.5mm; border-radius:2mm; flex:none; }
-    .pied-carte p { font-size:7.5pt; line-height:1.4; color:var(--doux); }
-    .pied-carte p b { color:var(--encre); font-size:9pt; display:block; margin-bottom:1mm; }
-
-    /* ③ Carte format carte bancaire */
-    .carte-cb { width:85.6mm; height:54mm; border-radius:3.2mm; overflow:hidden; background:var(--encre); color:#fff; display:flex; }
-    .carte-cb .gauche { flex:1; padding:4mm 0 4mm 4.5mm; display:flex; flex-direction:column; }
-    .carte-cb .tag { background:var(--rouge); align-self:flex-start; font-size:6.5pt; font-weight:900; letter-spacing:.6mm; padding:.8mm 2mm; border-radius:.8mm; }
-    .carte-cb .t { font-size:9.5pt; font-weight:850; line-height:1.15; margin-top:3mm; }
-    .carte-cb .t em { font-style:normal; color:#FF4A40; }
-    .carte-cb .n { font-size:7pt; color:#D9D1C7; margin-top:auto; line-height:1.35; }
-    .carte-cb .droite { width:34mm; display:grid; place-items:center; }
-    .carte-cb .qr { width:30mm; height:30mm; background:#fff; padding:1.2mm; border-radius:1.5mm; }
+    /* ② Collerette (manche) */
+    .collerette { width:40mm; height:80mm; border-radius:4mm; background:#fff; display:flex; flex-direction:column; align-items:center; padding:4mm 3mm; text-align:center; }
+    .collerette .trou { width:9mm; height:9mm; border-radius:50%; border:0.6mm solid var(--encre); background:var(--creme); margin-bottom:3mm; }
+    .collerette p.t { font-size:10pt; font-weight:850; line-height:1.15; }
+    .collerette p.t em { font-style:normal; color:var(--rouge); }
+    .collerette .qr { width:32mm; height:32mm; margin:3mm 0 2mm; }
+    .collerette p.s { font-size:6.5pt; line-height:1.35; color:var(--doux); }
 
     .qr svg { width:100%; height:100%; display:block; }
 
-    /* ---------- Impression ---------- */
     @page { size:A4; margin:0; }
-    @media print {
-      body { background:#fff; }
-      .outils { display:none; }
-      .feuille { margin:0; }
-    }
+    @media print { body { background:#fff; } .outils { display:none; } .feuille { margin:0; } }
   </style>
 </head>
 <body>
 
-  <!-- Barre d'outils : visible à l'écran, masquée à l'impression -->
   <div class="outils">
-    <b>Passeport imprimable.</b> Le QR code pointe vers : <code id="url-affichee"></code>
-    <div id="alerte-url" class="alerte" hidden>
-      L’adresse est encore celle d’exemple. Hébergez d’abord l’interface, puis remplacez <b>urlInterface</b> dans <b>config.js</b> : le QR code se mettra à jour tout seul.
-    </div>
+    <b>Étiquettes à imprimer.</b> Les QR codes pointent vers : <code id="url-affichee"></code>
     <div>
       <button class="principal" onclick="window.print()">Imprimer (taille réelle, 100 %)</button>
-      <button onclick="telechargerSVG()">Télécharger le QR en SVG</button>
-      <button onclick="telechargerPNG()">Télécharger le QR en PNG</button>
+      <button onclick="telechargerPNG('antiadhesive')">QR antiadhésive (PNG)</button>
+      <button onclick="telechargerPNG('ceramique')">QR céramique (PNG)</button>
+      <button onclick="telechargerPNG('inox')">QR inox (PNG)</button>
     </div>
   </div>
 
   <div class="feuille">
-    <p class="legende">À découper le long des pointillés · imprimer en couleur, à 100 %, sur papier épais ou autocollant pour l’étiquette.</p>
+    <p class="legende">Collez l’étiquette correspondant à votre poêle au dos de celle-ci (papier autocollant conseillé). Découpez le long des pointillés.</p>
 
-    <!-- ① ÉTIQUETTE POUR LE DOS DE LA POÊLE -->
+    <!-- ① Une étiquette par modèle : data-modele choisit la fiche ouverte par le QR -->
     <div class="etiquette decoupe">
       <div class="bande">PASSEPORT</div>
-      <div class="qr" data-qr></div>
-      <p class="sous">Scannez-moi : le dossier complet</p>
+      <p class="modele">Antiadhésive</p>
+      <div class="qr" data-modele="antiadhesive"></div>
+      <p class="sous">Scannez-moi</p>
+    </div>
+    <div class="etiquette decoupe">
+      <div class="bande">PASSEPORT</div>
+      <p class="modele">Céramique</p>
+      <div class="qr" data-modele="ceramique"></div>
+      <p class="sous">Scannez-moi</p>
+    </div>
+    <div class="etiquette decoupe">
+      <div class="bande">PASSEPORT</div>
+      <p class="modele">Inox</p>
+      <div class="qr" data-modele="inox"></div>
+      <p class="sous">Scannez-moi</p>
     </div>
 
-    <!-- ② CARTE PASSEPORT A6 (pochette cartonnée) -->
-    <div class="carte-a6 decoupe">
-      <div class="bande"><b>PASSEPORT</b><span data-config="bloc"></span></div>
-      <div class="corps">
-        <div class="identite">
-          <!-- Initiales affichées tant qu'aucune photo n'est indiquée dans config.js -->
-          <div class="photo" id="photo-a6"></div>
-          <div>
-            <p class="nom"><span data-config="prenom"></span> <span data-config="nom"></span></p>
-            <p class="info"><span data-config="formation"></span><br><span data-config="ecole"></span> · <span data-config="annee"></span></p>
-          </div>
-        </div>
-        <p class="titre-dossier">Tefal — N’attache jamais. <em>Ne cache rien.</em></p>
-        <p class="sous-titre" data-config="sousTitre"></p>
-        <!-- Principaux éléments du dossier : modifiables ici -->
-        <div class="axes">
-          <div><b>Montrer</b>Un passeport au dos de chaque poêle</div>
-          <div><b>Apprendre</b>L’École de la poêle</div>
-          <div><b>Reprendre</b>La Grande Reprise</div>
-        </div>
-        <div class="axes">
-          <div><b>500 k€ HT</b>déc. 2026 → déc. 2027</div>
-          <div><b>20-30 ans</b>au premier logement</div>
-          <div><b>4 M</b>jeunes touchés ≥ 3 fois</div>
-        </div>
-        <div class="pied-carte">
-          <div class="qr" data-qr></div>
-          <p><b>Scannez pour consulter le dossier</b>Diagnostic, étude, veille RADAR, stratégie, dispositif, visuels, budget. Sur téléphone, sans installation.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ③ CARTE FORMAT CARTE BANCAIRE -->
-    <div class="carte-cb decoupe">
-      <div class="gauche">
-        <span class="tag">PASSEPORT</span>
-        <p class="t">N’attache jamais.<br><em>Ne cache rien.</em></p>
-        <p class="n"><span data-config="prenom"></span> <span data-config="nom"></span><br><span data-config="ecole"></span> · <span data-config="annee"></span></p>
-      </div>
-      <div class="droite"><div class="qr" data-qr></div></div>
+    <!-- ② Collerette pour le stock (renvoie vers la fiche antiadhésive) -->
+    <div class="collerette decoupe">
+      <div class="trou"></div>
+      <p class="t">Cette poêle a un <em>passeport.</em></p>
+      <div class="qr" data-modele="antiadhesive"></div>
+      <p class="s">Composition · science · bons gestes · fin de vie</p>
     </div>
   </div>
 
 <script>
-/* =====================================================================
-   Génération du QR code à partir de config.js (aucun appel réseau)
-   ===================================================================== */
-var config = window.CONFIG || {};
-var url = config.urlInterface || "";
-
-/* Recopie les informations de config.js dans la feuille */
-document.querySelectorAll("[data-config]").forEach(function (el) {
-  var v = config[el.getAttribute("data-config")];
-  if (v) el.textContent = v;
-});
-document.getElementById("url-affichee").textContent = url;
-if (url.indexOf("VOTRE-PSEUDO") !== -1) document.getElementById("alerte-url").hidden = false;
-
-/* Photo de la carte A6, ou initiales s'il n'y a pas de photo */
-var cadrePhoto = document.getElementById("photo-a6");
-if (config.photo) {
-  cadrePhoto.innerHTML = '<img src="' + config.photo + '" alt="Photo">';
-} else {
-  cadrePhoto.textContent = ((config.prenom || " ")[0] + (config.nom || " ")[0]).toUpperCase();
+/* Adresse de base (config.js) + paramètre ?m= selon le modèle */
+var base = (window.CONFIG && window.CONFIG.urlInterface) || "";
+function adresse(modele) {
+  return modele === "antiadhesive" ? base : base + "?m=" + modele;   /* l'antiadhésive est la fiche par défaut */
 }
+document.getElementById("url-affichee").textContent = base;
 
-/* Construit le QR en SVG : noir sur blanc, marge de 4 modules (norme),
-   niveau de correction « Q » (25 %) pour rester lisible même un peu abîmé. */
+/* Construit un QR en SVG (marge de 4 modules, correction « Q » = 25 %) */
 function qrSVG(texte) {
-  var qr = qrcode(0, "Q");
-  qr.addData(texte);
-  qr.make();
-  var n = qr.getModuleCount(), marge = 4, total = n + 2 * marge, chemin = "";
-  for (var y = 0; y < n; y++) {
-    for (var x = 0; x < n; x++) {
-      if (qr.isDark(y, x)) chemin += "M" + (x + marge) + " " + (y + marge) + "h1v1h-1z";
-    }
-  }
-  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + total + " " + total +
-         '" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#ffffff"/>' +
-         '<path fill="#17120F" d="' + chemin + '"/></svg>';
+  var qr = qrcode(0, "Q"); qr.addData(texte); qr.make();
+  var n = qr.getModuleCount(), m = 4, t = n + 2 * m, d = "";
+  for (var y = 0; y < n; y++) for (var x = 0; x < n; x++)
+    if (qr.isDark(y, x)) d += "M" + (x + m) + " " + (y + m) + "h1v1h-1z";
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + t + " " + t +
+    '" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#ffffff"/><path fill="#17120F" d="' + d + '"/></svg>';
 }
+document.querySelectorAll("[data-modele]").forEach(function (el) {
+  el.innerHTML = qrSVG(adresse(el.getAttribute("data-modele")));
+});
 
-var svg = qrSVG(url);
-document.querySelectorAll("[data-qr]").forEach(function (el) { el.innerHTML = svg; });
-
-/* Téléchargements du QR code seul */
-function telecharger(nom, href) {
-  var a = document.createElement("a");
-  a.href = href; a.download = nom;
-  document.body.appendChild(a); a.click(); a.remove();
-}
-function telechargerSVG() {
-  telecharger("qr-code-dossier.svg", URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" })));
-}
-function telechargerPNG() {
+/* Télécharge le QR d'un modèle en PNG 1200 × 1200 px */
+function telechargerPNG(modele) {
   var img = new Image();
   img.onload = function () {
-    var c = document.createElement("canvas");
-    c.width = c.height = 1200;                 /* 1200 px : net jusqu'à 10 cm à 300 dpi */
-    var ctx = c.getContext("2d");
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(img, 0, 0, 1200, 1200);
-    telecharger("qr-code-dossier.png", c.toDataURL("image/png"));
+    var c = document.createElement("canvas"); c.width = c.height = 1200;
+    var ctx = c.getContext("2d"); ctx.imageSmoothingEnabled = false; ctx.drawImage(img, 0, 0, 1200, 1200);
+    var a = document.createElement("a"); a.href = c.toDataURL("image/png"); a.download = "qr-passeport-" + modele + ".png";
+    document.body.appendChild(a); a.click(); a.remove();
   };
-  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(qrSVG(adresse(modele)));
 }
 </script>
 </body>

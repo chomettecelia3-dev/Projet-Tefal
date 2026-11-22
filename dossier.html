@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dossier Tefal — Plan de communication 360°</title>
+  <meta name="description" content="Dossier de compétences : recommandation de communication 360° pour Tefal, « N’attache jamais. Ne cache rien. »">
+  <meta name="theme-color" content="#D7141E">
+  <!-- Demande aux moteurs de recherche de ne pas référencer la page : seul le QR code y mène -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Feuille de style unique : toutes les couleurs sont réglées en haut de ce fichier -->
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- Vos informations personnelles et l'adresse du site : à modifier dans config.js -->
+  <script src="config.js"></script>
+</head>
+<body>
+
+<!-- =====================================================================
+     COMMENT MODIFIER CETTE PAGE
+     - Vos nom, formation, photo, adresse du site : dans config.js (pas ici).
+     - Le contenu du dossier : directement dans les sections ci-dessous.
+       Chaque section commence par un commentaire « SECTION … ».
+     - Les emplacements à compléter sont écrits entre crochets [ … ]
+       et surlignés en jaune à l'écran (classe "a-completer").
+       Remplacez le texte, puis retirez class="a-completer".
+     - Pour ajouter une section au menu : créez un <section id="..." data-titre="...">,
+       le menu se met à jour tout seul.
+     ===================================================================== -->
+
+<!-- ---------- EN-TÊTE : rempli automatiquement depuis config.js ---------- -->
+<header class="entete">
+  <div class="entete-ligne">
+    <span class="badge">Passeport</span>
+    <span class="entete-nom"><span data-config="prenom"></span> <span data-config="nom"></span></span>
+  </div>
+  <!-- Menu de navigation : construit automatiquement par assets/app.js -->
+  <nav class="menu" id="menu" aria-label="Sections du dossier"></nav>
+</header>
+
+<main id="haut">
+
+  <!-- ================= SECTION ACCUEIL ================= -->
+  <section id="accueil" data-titre="Accueil" class="hero">
+    <div class="hero-photo">
+      <!-- La photo est définie dans config.js (champ "photo") -->
+      <img id="photo" alt="Photo de l’étudiant·e" hidden>
+      <!-- Sans photo : les initiales s'affichent ici (calculées depuis config.js) -->
+      <div id="photo-vide" class="photo-vide" aria-hidden="true"></div>
+    </div>
+    <p class="surtitre"><span data-config="formation"></span> · <span data-config="ecole"></span> · <span data-config="annee"></span></p>
+    <h1 data-config="titreDossier"></h1>
+    <p class="chapo" data-config="sousTitre"></p>
+    <p class="petit"><span data-config="bloc"></span> · Oral : <span data-config="dateOral"></span></p>
+
+    <div class="encart">
+      <h2>Le dossier en 30 secondes</h2>
+      <ol class="liste-num">
+        <li><b>Le problème :</b> le nom Tefal vient du Téflon. Les 20-30 ans doutent de ce que contiennent les poêles antiadhésives.</li>
+        <li><b>Le concept :</b> prolonger la promesse historique « N’attache jamais » par une promesse de posture : « Ne cache rien ».</li>
+        <li><b>Trois axes :</b> <i>Montrer</i> (passeport au dos de chaque poêle), <i>Apprendre</i> (L’École de la poêle), <i>Reprendre</i> (La Grande Reprise).</li>
+        <li><b>Les moyens :</b> 500 000 € HT, de décembre 2026 à décembre 2027, avec une condition : l’engagement avant la parole.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= SECTION COMPÉTENCES =================
+       Les compétences 4 et 8 reprennent les intitulés cités dans le dossier (annexe P).
+       Les autres cartes décrivent les savoir-faire démontrés, sans numéro officiel.
+       Pour ajouter un numéro : modifiez le texte de <p class="etiquette">. -->
+  <section id="competences" data-titre="Compétences">
+    <p class="surtitre">Passeport de compétences</p>
+    <h2>Ce que ce dossier démontre</h2>
+    <p>Chaque savoir-faire renvoie à la partie du dossier qui le prouve.</p>
+
+    <div class="grille">
+      <article class="carte">
+        <p class="etiquette">Analyse</p>
+        <h3>Analyser le contexte et le marché de l’annonceur</h3>
+        <p>Preuve : brief, PESTELE, benchmark, mapping, SWOT.</p>
+        <a class="lien" href="#diagnostic">Voir le diagnostic →</a>
+      </article>
+      <article class="carte">
+        <p class="etiquette">Étude</p>
+        <h3>Concevoir une étude pour éclairer la décision</h3>
+        <p>Preuve : 5 méthodes complémentaires, de la netnographie au test A/B.</p>
+        <a class="lien" href="#etude">Voir l’étude →</a>
+      </article>
+      <article class="carte">
+        <p class="etiquette">Compétence 4</p>
+        <h3>Mettre en place une veille automatisée</h3>
+        <p>Preuve : l’outil RADAR, ses 5 étapes et son tableau de bord.</p>
+        <a class="lien" href="#veille">Voir la veille →</a>
+      </article>
+      <article class="carte">
+        <p class="etiquette">Stratégie</p>
+        <h3>Élaborer une stratégie de communication</h3>
+        <p>Preuve : positionnement, objectifs SMART, cibles, personas, message.</p>
+        <a class="lien" href="#strategie">Voir la stratégie →</a>
+      </article>
+      <article class="carte">
+        <p class="etiquette">Dispositif</p>
+        <h3>Construire un dispositif 360°, son calendrier et son budget</h3>
+        <p>Preuve : dispositif PESO, phases, budget de 500 k€, risques.</p>
+        <a class="lien" href="#dispositif">Voir le dispositif →</a>
+      </article>
+      <article class="carte">
+        <p class="etiquette">Compétence 8</p>
+        <h3>Créer les visuels du plan</h3>
+        <p>Preuve : affiches teaser et Chandeleur, PLV, concepts TikTok.</p>
+        <a class="lien" href="#visuels">Voir les visuels →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= SECTION BRIEF ================= -->
+  <section id="brief" data-titre="Brief">
+    <p class="surtitre">01 · Ce que nous avons compris</p>
+    <h2>Faire d’une controverse une preuve</h2>
+    <blockquote>« Reconquérir la confiance et l’attention des 20-30 ans en transformant une controverse en opportunité de réassurance et de modernité, plutôt qu’en évitant le sujet. »</blockquote>
+
+    <ul class="frise">
+      <li><b>2024</b> Campagne « nos revêtements sont reconnus comme sûrs »</li>
+      <li><b>2025</b> Plainte de trois associations contre cette campagne</li>
+      <li><b>13/10/2026</b> Mise en demeure : trois mois pour s’engager à sortir des PFAS</li>
+      <li><b>2027</b> Proposition de restriction européenne des PFAS, PTFE compris</li>
+    </ul>
+
+    <h3>Quatre besoins derrière le brief</h3>
+    <div class="grille">
+      <article class="carte"><h4>Crédibilité avant visibilité</h4><p>Tout le monde connaît Tefal : c’est la confiance qui manque.</p></article>
+      <article class="carte"><h4>Cohérence discours / preuves</h4><p>Fabrication à Rumilly, fin de vie des poêles, réglementation.</p></article>
+      <article class="carte"><h4>Anticipation</h4><p>Préparer la cible au « monde d’après » avant qu’il ne s’impose.</p></article>
+      <article class="carte"><h4>Embarquer l’interne</h4><p>Les salariés sont les premières preuves humaines.</p></article>
+    </div>
+
+    <div class="encart sombre">
+      <p class="etiquette">Problématique</p>
+      <p class="grand">Comment faire de Tefal la marque d’ustensiles la plus transparente aux yeux des 20-30 ans, alors que son nom même est associé au Téflon et que sa dernière parole publique a été contestée ?</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION DIAGNOSTIC ================= -->
+  <section id="diagnostic" data-titre="Diagnostic">
+    <p class="surtitre">02 · Diagnostic</p>
+    <h2>Le marché vend moins et gagne moins</h2>
+    <div class="chiffres">
+      <div><b>3,4 %</b><span>d’inflation sur un an (octobre 2026)</span></div>
+      <div><b>−4,6 %</b><span>de ventes non alimentaires en grandes surfaces (1er trimestre)</span></div>
+      <div><b>+32 %</b><span>d’importations d’articles de cuisson en 2025</span></div>
+    </div>
+    <p>À cela s’ajoute une rupture réglementaire : restriction européenne des PFAS, fin des allégations écologiques vagues, et un État qui conseille l’inox et la fonte. <b>La confiance vérifiable devient un critère d’achat.</b></p>
+
+    <h3>Une place est vide : facile et transparent</h3>
+    <table>
+      <thead><tr><th>Concurrent</th><th>Sa seule promesse</th></tr></thead>
+      <tbody>
+        <tr><td>GreenPan</td><td>la santé</td></tr>
+        <tr><td>Cookut</td><td>le fun</td></tr>
+        <tr><td>Cristel</td><td>le made in France</td></tr>
+        <tr><td>de Buyer</td><td>l’expertise</td></tr>
+        <tr><td>Le Creuset</td><td>le statut</td></tr>
+      </tbody>
+    </table>
+    <p>Aucun ne dit ce que contiennent ses poêles, ni n’apprend à cuisiner sur plusieurs matériaux.</p>
+
+    <!-- Les blocs <details> s'ouvrent au toucher : pratique pour garder la page courte sur téléphone -->
+    <details>
+      <summary>SWOT : des atouts rares, jamais racontés</summary>
+      <div class="grille">
+        <article class="carte"><h4>Forces</h4><ul><li>Inventeur de l’antiadhésif, 70 ans</li><li>Usines françaises, Groupe SEB</li><li>Réparabilité 15 ans, filière de reprise</li></ul></article>
+        <article class="carte"><h4>Faiblesses</h4><ul><li>Un nom construit sur « Téflon »</li><li>Campagne 2024 contestée en justice</li><li>Céramique et inox peu valorisés</li></ul></article>
+        <article class="carte"><h4>Opportunités</h4><ul><li>Une cible qui s’informe sur les réseaux</li><li>La transparence devient la norme</li><li>70 ans et Chandeleur</li></ul></article>
+        <article class="carte"><h4>Menaces</h4><ul><li>Restriction européenne des PFAS</li><li>ONG, pollution autour de Rumilly</li><li>Marché en recul</li></ul></article>
+      </div>
+    </details>
+
+    <div class="encart">
+      <p class="etiquette">Enjeu</p>
+      <p>Transformer la légitimité historique de Tefal en preuve de transparence, avant que la réglementation et les concurrents ne lui imposent le sujet.</p>
+      <p class="etiquette">Quatre règles pour tout le plan</p>
+      <ol class="liste-num">
+        <li>Ne jamais affirmer « sûr » : exposer les faits.</li>
+        <li>Conditionner le lancement à un engagement public sur les PFAS.</li>
+        <li>Valoriser l’offre sans PTFE sans dénigrer l’antiadhésif.</li>
+        <li>Viser le premier logement.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= SECTION ÉTUDE ================= -->
+  <section id="etude" data-titre="Étude">
+    <p class="surtitre">03 · Étude</p>
+    <h2>Taire, rassurer ou tout montrer ?</h2>
+    <table>
+      <thead><tr><th>Méthode</th><th>Pourquoi</th></tr></thead>
+      <tbody>
+        <tr><td>Documentation + veille</td><td>Savoir ce que disent déjà les données publiques</td></tr>
+        <tr><td>Questionnaire, n = 400</td><td>Mesurer (± 5 points)</td></tr>
+        <tr><td>12 à 15 entretiens</td><td>Comprendre le pourquoi</td></tr>
+        <tr><td>Netnographie, 500 commentaires</td><td>Observer sans biais de déclaration</td></tr>
+        <tr><td>Test A/B « rassurer » / « tout montrer »</td><td>Mesurer un comportement réel</td></tr>
+      </tbody>
+    </table>
+    <p class="petit">Budget : 15 k€ inclus dans les 500 k€, dont le même questionnaire refait à 6 et 12 mois.</p>
+
+    <div class="encart sombre">
+      <p class="etiquette">Insight</p>
+      <p>Les 20-30 ans veulent savoir ce qu’il y a dans leurs objets, mais personne ne leur dit ce qu’il y a dans une poêle, et quitter l’antiadhésif fait peur.</p>
+      <p class="grand">Le frein n’est pas l’envie. C’est la peur de rater.</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION VEILLE ================= -->
+  <section id="veille" data-titre="Veille">
+    <p class="surtitre">03 · Veille</p>
+    <h2>L’étude est une photo. La veille est le film.</h2>
+    <div class="grille">
+      <article class="carte"><h4>Détecter tôt</h4><p><i>Le détecteur de fumée.</i> Repérer une décision, une action d’ONG ou un reportage avant la crise.</p></article>
+      <article class="carte"><h4>Nourrir le plan</h4><p><i>La revue de presse.</i> Trouver les sujets, les questions et les bons moments pour parler.</p></article>
+      <article class="carte"><h4>Mesurer</h4><p><i>Le thermomètre.</i> Suivre le sentiment et la part de voix.</p></article>
+    </div>
+
+    <h3>RADAR, en 5 étapes</h3>
+    <ol class="etapes">
+      <li><b>Cibler</b> 5 axes : réglementation, santé et science, RSE et e-réputation, concurrence, comportements des 20-30 ans.</li>
+      <li><b>Sourcer</b> une dizaine de flux RSS fiables (ECHA, Reporterre, Que Choisir, Reddit…), plus Google Trends, Meta Ad Library et TikTok Creative Center.</li>
+      <li><b>Collecter</b> automatiquement chaque matin à 7 h, sans doublons, dans un tableau. Coût : quasiment 0 €.</li>
+      <li><b>Analyser</b> : axe, tonalité, score de criticité de 0 à 100, et alerte de pic quand les mentions doublent.</li>
+      <li><b>Diffuser</b> : alerte rouge validée par un humain, résumé du lundi, tableau de bord et comité mensuels.</li>
+    </ol>
+
+    <details>
+      <summary>Ce que la veille a déjà changé dans le plan</summary>
+      <table>
+        <thead><tr><th>Signal repéré</th><th>Décision</th></tr></thead>
+        <tbody>
+          <tr><td>Mise en demeure : réponse attendue en janvier 2027</td><td>Phase 0 : l’engagement avant la publicité</td></tr>
+          <tr><td>Registre européen du passeport numérique ouvert</td><td>Passeport « Scanne ta poêle »</td></tr>
+          <tr><td>Hausse des recherches « poêle inox »</td><td>L’École de la poêle</td></tr>
+          <tr><td>Enquêtes consommateurs à la Chandeleur</td><td>Lancement le 2 février 2027</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </section>
+
+  <!-- ================= SECTION STRATÉGIE ================= -->
+  <section id="strategie" data-titre="Stratégie">
+    <p class="surtitre">04 · Stratégie de communication</p>
+    <h2>N’attache jamais. <span class="rouge">Ne cache rien.</span></h2>
+    <p><b>Positionnement :</b> pour les 20-30 ans qui s’équipent et veulent cuisiner sain sans avoir à deviner, Tefal est la marque française d’ustensiles qui met tout sur la table : matériaux, preuves, limites.</p>
+
+    <div class="grille trois">
+      <article class="carte"><p class="etiquette">Axe 1</p><h3>Montrer</h3><p>Tout dire au dos de la poêle et en direct. Contre la méfiance.</p></article>
+      <article class="carte"><p class="etiquette">Axe 2</p><h3>Apprendre</h3><p>Rendre chaque matériau facile. Contre la peur de rater.</p></article>
+      <article class="carte"><p class="etiquette">Axe 3</p><h3>Reprendre</h3><p>Transformer la vieille poêle rayée en geste utile.</p></article>
+    </div>
+
+    <h3>Objectifs SMART (déc. 2026 → déc. 2027)</h3>
+    <div class="chiffres">
+      <div><b>4 M</b><span>de 20-30 ans touchés au moins 3 fois (savoir)</span></div>
+      <div><b>+15 pts</b><span>d’accord avec « Tefal est transparente » (aimer)</span></div>
+      <div><b>150 000</b><span>scans du passeport (agir)</span></div>
+      <div><b>40 000</b><span>poêles rapportées (agir)</span></div>
+    </div>
+    <details>
+      <summary>Tous les objectifs</summary>
+      <ul>
+        <li>Savoir : 50 % des 20-30 ans (4 M) touchés ≥ 3 fois du 18/01 au 31/03/2027 ; +20 pts savent que Tefal propose du sans PTFE.</li>
+        <li>Aimer : +15 pts sur « Tefal est transparente » ; +15 pts de sentiment des mentions en ligne.</li>
+        <li>Agir : 150 000 scans ; 25 000 inscrits à L’École de la poêle ; 40 000 poêles rapportées.</li>
+        <li>Interne : 300 salariés ambassadeurs formés au 30/06/2027.</li>
+        <li>Mesure : baromètre T0 / T6 / T12 (n = 400), RADAR, compteurs.</li>
+      </ul>
+    </details>
+
+    <h3>Cibles et personas</h3>
+    <p>Cœur de cible : les 20-30 ans qui s’équipent pour leur <b>premier logement</b>. Relais : créateurs, journalistes, vendeurs. Interne : salariés de Rumilly et Tournus.</p>
+    <div class="grille trois">
+      <article class="carte"><h4>Morgane, 21 ans</h4><p>Étudiante à Lille, poêle rayée héritée.</p><p class="rouge"><b>« Ma poêle est-elle encore bonne ? »</b></p></article>
+      <article class="carte"><h4>Thomas, 27 ans</h4><p>Vient d’emménager à Toulouse.</p><p class="rouge"><b>« Je prends laquelle ? »</b></p></article>
+      <article class="carte"><h4>Charlotte, 24 ans</h4><p>Est passée à l’inox et a tout raté.</p><p class="rouge"><b>« Montrez-moi, apprenez-moi. »</b></p></article>
+    </div>
+  </section>
+
+  <!-- ================= SECTION DISPOSITIF ================= -->
+  <section id="dispositif" data-titre="Dispositif">
+    <p class="surtitre">04 · Dispositif PESO</p>
+    <h2>Chaque canal a un rôle, tous renvoient au passeport</h2>
+    <div class="grille">
+      <article class="carte"><p class="etiquette">Owned · 55 k€</p><h4>La vérité</h4><p>Passeport « Scanne ta poêle » au dos de chaque poêle, L’École de la poêle (12 épisodes), newsletter et PLV.</p></article>
+      <article class="carte"><p class="etiquette">Paid · 270 k€</p><h4>La visibilité</h4><p>Teaser « TE·FAL. On vous doit des explications. », Chandeleur, social ads (TikTok en tête), créateurs.</p></article>
+      <article class="carte"><p class="etiquette">Earned · 25 k€</p><h4>La crédibilité</h4><p>Live mensuel « Tefal passe à la poêle », manifeste, Open Factory à Rumilly sous condition.</p></article>
+      <article class="carte"><p class="etiquette">Shared + hors-média · 70 k€</p><h4>L’action</h4><p>#MontreTaPoêle et le tour « La Grande Reprise » dans 6 villes étudiantes.</p></article>
+    </div>
+  </section>
+
+  <!-- ================= SECTION VISUELS =================
+       Les images sont dans assets/img/. Pour en changer : remplacez le fichier
+       en gardant le même nom, ou modifiez l'attribut src. -->
+  <section id="visuels" data-titre="Visuels">
+    <p class="surtitre">Contenus complémentaires</p>
+    <h2>Lancement, PLV et TikTok</h2>
+    <p class="petit">Touchez une image pour l’agrandir.</p>
+
+    <!-- Lancement : teaser (18 janvier) puis Chandeleur (2 février) -->
+    <h3>Le lancement : du teaser à la Chandeleur</h3>
+    <div class="galerie">
+      <figure><a href="assets/img/lancement-teaser.jpg"><img src="assets/img/lancement-teaser.jpg" alt="Affiche teaser : TE·FAL, « Notre nom vient du Téflon. On vous doit des explications. »" loading="lazy"></a>
+        <figcaption><b>18 janvier · Teaser « TE·FAL »</b> · un aveu qui intrigue</figcaption></figure>
+      <figure><a href="assets/img/lancement-chandeleur.jpg"><img src="assets/img/lancement-chandeleur.jpg" alt="Affiche de lancement : « Avant de retourner la crêpe, retournez la poêle. »" loading="lazy"></a>
+        <figcaption><b>2 février · Affiche Chandeleur</b> · le passeport au dos de la poêle</figcaption></figure>
+      <figure class="large"><a href="assets/img/lancement-abribus.jpg"><img src="assets/img/lancement-abribus.jpg" alt="Mise en situation de l’affiche sur un abribus parisien" loading="lazy"></a>
+        <figcaption><b>Semaine de la Chandeleur</b> · environ 800 abribus à Paris et les écrans des gares de Lyon, plus un spot audio de 20 s ouvert sur le bruit d’une crêpe qui saute</figcaption></figure>
+    </div>
+
+    <h3>PLV et TikTok</h3>
+    <div class="galerie">
+      <figure><a href="assets/img/plv-stop-rayon.jpg"><img src="assets/img/plv-stop-rayon.jpg" alt="Stop-rayon en forme de poêle : « Avant de l’acheter, retournez-la »" loading="lazy"></a>
+        <figcaption><b>Stop-rayon « Retournez-la »</b> · Montrer · scans du passeport</figcaption></figure>
+      <figure><a href="assets/img/plv-totem.jpg"><img src="assets/img/plv-totem.jpg" alt="Totem comparatif « Je prends laquelle ? »" loading="lazy"></a>
+        <figcaption><b>Totem « Je prends laquelle ? »</b> · trois matériaux, sans classement</figcaption></figure>
+      <figure><a href="assets/img/plv-bac-reprise.jpg"><img src="assets/img/plv-bac-reprise.jpg" alt="Bac de reprise « Rapportez-la, toutes marques »" loading="lazy"></a>
+        <figcaption><b>Bac « La Grande Reprise »</b> · Reprendre · 40 000 poêles</figcaption></figure>
+      <figure><a href="assets/img/plv-collerette-kit.jpg"><img src="assets/img/plv-collerette-kit.jpg" alt="Collerette passeport et kit vendeur « test de la goutte d’eau »" loading="lazy"></a>
+        <figcaption><b>Collerette et kit vendeur</b> · le passeport et le conseil en rayon</figcaption></figure>
+      <figure class="large"><a href="assets/img/tiktok-concepts.jpg"><img src="assets/img/tiktok-concepts.jpg" alt="Cinq concepts TikTok" loading="lazy"></a>
+        <figcaption><b>5 concepts TikTok</b> · École de la poêle, teaser, créateur, #MontreTaPoêle, réponses du live</figcaption></figure>
+      <figure class="large"><a href="assets/img/tiktok-storyboard.jpg"><img src="assets/img/tiktok-storyboard.jpg" alt="Storyboard de l’épisode 1 de L’École de la poêle" loading="lazy"></a>
+        <figcaption><b>Storyboard</b> · « Ton œuf colle sur inox ? Normal. »</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ================= SECTION CALENDRIER ET BUDGET ================= -->
+  <section id="calendrier" data-titre="Calendrier">
+    <p class="surtitre">04 · Calendrier et budget</p>
+    <h2>L’engagement avant la parole</h2>
+    <ol class="etapes">
+      <li><b>Phase 0 · déc.-janv.</b> Préparer : engagement public PFAS, comité scientifique, baromètre T0. Aucun achat d’espace avant.</li>
+      <li><b>Phase 1 · 18/01 → 02/02</b> Révéler : teaser TE·FAL, lancement le jour de la Chandeleur.</li>
+      <li><b>Phase 2 · févr.-juin</b> Apprendre et reprendre : École, lives, tour La Grande Reprise.</li>
+      <li><b>Phase 3 · sept.-oct.</b> S’installer : rentrée, premiers logements, campus.</li>
+      <li><b>Phase 4 · nov.-déc.</b> Rendre compte : baromètre T12, rapport « Ne cache rien, an 1 ».</li>
+    </ol>
+
+    <h3>Budget : 500 000 € HT</h3>
+    <!-- Barres : la largeur (style="--v:…") est le pourcentage du plus gros poste (130 k€ = 100) -->
+    <ul class="barres">
+      <li style="--v:100"><span>Social ads et SEA</span><b>130 k€</b></li>
+      <li style="--v:62"><span>Créateurs</span><b>80 k€</b></li>
+      <li style="--v:54" class="gris"><span>Tour La Grande Reprise</span><b>70 k€</b></li>
+      <li style="--v:46"><span>Affichage teaser + Chandeleur</span><b>60 k€</b></li>
+      <li style="--v:38" class="gris"><span>Réserve (10 %)</span><b>50 k€</b></li>
+      <li style="--v:23" class="gris"><span>L’École de la poêle</span><b>30 k€</b></li>
+      <li style="--v:19" class="gris"><span>RP, live, Open Factory</span><b>25 k€</b></li>
+      <li style="--v:15" class="gris"><span>Passeport</span><b>20 k€</b></li>
+      <li style="--v:12" class="gris"><span>Interne et distributeurs</span><b>15 k€</b></li>
+      <li style="--v:12" class="gris"><span>Études et mesure</span><b>15 k€</b></li>
+      <li style="--v:4" class="gris"><span>CRM et PLV</span><b>5 k€</b></li>
+    </ul>
+    <p class="petit">Rouge : achat d’espace et créateurs (Paid, 54 %). Gris : autres postes.</p>
+  </section>
+
+  <!-- ================= SECTION RISQUES ================= -->
+  <section id="risques" data-titre="Risques">
+    <p class="surtitre">05 · Risques</p>
+    <h2>Ce qui peut mal tourner, et notre réponse</h2>
+    <table>
+      <thead><tr><th>Scénario</th><th>Réponse prévue</th></tr></thead>
+      <tbody>
+        <tr><td>Pas d’engagement PFAS daté</td><td>On ne lance pas « Ne cache rien » : repli sur l’École et la Reprise</td></tr>
+        <tr><td>Une ONG dénonce un « transparency-washing »</td><td>Invitation au live, données publiées, réponse sous 24 h</td></tr>
+        <tr><td>Nouvelle mesure défavorable à Rumilly</td><td>Publiée dans le passeport avant la presse</td></tr>
+        <tr><td>Interdiction européenne du PTFE</td><td>Le concept reste valable : la cible a été préparée</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= SECTION À PROPOS ================= -->
+  <section id="apropos" data-titre="À propos">
+    <p class="surtitre">À propos</p>
+    <h2>À propos du dossier</h2>
+    <p><span data-config="prenom"></span> <span data-config="nom"></span> · <span data-config="formation"></span> · <span data-config="ecole"></span> · <span data-config="annee"></span></p>
+    <p><span data-config="bloc"></span>. Soutenance orale : <span data-config="dateOral"></span>.</p>
+    <p id="contact"></p>
+    <p class="petit">Dossier réalisé dans le cadre d’un exercice pédagogique. Tefal est une marque du Groupe SEB ; ce travail n’est pas une commande de la marque. Les maquettes sont des propositions : QR codes, pseudonymes et chiffres illustratifs y sont fictifs.</p>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <p><span data-config="titreDossier"></span></p>
+  <a href="#haut" class="retour">↑ Haut de page</a>
+</footer>
+
+<!-- Petit script : menu automatique, infos de config.js, photo, section active -->
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -4,14 +4,22 @@
 
 | Fichier | Rôle | À modifier ? |
 | --- | --- | --- |
-| `config.js` | Vos informations (nom, formation, photo) et **l’adresse du site** | **Oui, en premier** |
-| `index.html` | L’interface que voit le jury après avoir scanné le QR code | Oui, pour le contenu |
-| `passeport.html` | Le passeport imprimable : étiquette pour la poêle, carte A6, carte bancaire | Rarement |
-| `passeport-A4.pdf` | Le passeport déjà prêt à imprimer, mais avec l’adresse d’exemple | À refaire après l’hébergement |
-| `qr/` | Le QR code en PNG et SVG, avec l’adresse d’exemple | À refaire après l’hébergement |
-| `assets/` | Style, script, images, générateur de QR | Non (sauf pour changer une image) |
+| `index.html` | **Le passeport produit** « Scanne ta poêle » : la page qui s’ouvre quand on scanne le QR au dos de la poêle | Non |
+| `assets/fiches.js` | **Les textes des trois fiches** (antiadhésive, céramique, inox) : composition, science, bons gestes, fin de vie | **Oui, pour le contenu** |
+| `passeport.html` | Les étiquettes à imprimer : une par modèle + la collerette pour le stock | Non |
+| `passeport-A4.pdf` | Les mêmes étiquettes, prêtes à imprimer | — |
+| `qr/` | Les QR codes seuls, en PNG et SVG, un par modèle | — |
+| `config.js` | L’adresse du site (`urlInterface`) utilisée par les QR codes | Seulement si l’adresse change |
+| `dossier.html` | L’ancienne interface de présentation de votre dossier (n’est plus liée au QR) | Facultatif, vous pouvez la supprimer |
 
-Tout fonctionne sans installation ni connexion à un service extérieur : aucune police ni bibliothèque n’est téléchargée.
+**Comment ça marche :** chaque modèle a sa propre adresse.
+- Antiadhésive : `https://chomettecelia3-dev.github.io/Projet-Tefal/`
+- Céramique : `https://chomettecelia3-dev.github.io/Projet-Tefal/?m=ceramique`
+- Inox : `https://chomettecelia3-dev.github.io/Projet-Tefal/?m=inox`
+
+La date d’achat est saisie par le client et gardée uniquement sur son téléphone. Pour la pré-remplir (par exemple avec un QR imprimé sur le ticket de caisse), ajoutez `&achat=2027-02-02` à l’adresse (ou `?achat=2027-02-02` pour l’antiadhésive).
+
+Tout fonctionne sans installation ni service extérieur. Un bandeau jaune indique en permanence qu’il s’agit d’une maquette étudiante non officielle : gardez-le.
 
 ## Étape 1 : héberger l’interface gratuitement
 
@@ -45,29 +53,25 @@ Ces services téléchargent la page au lieu de l’afficher, et le jury verrait 
 
 ## Étape 3 : modifier le contenu sans compétences techniques
 
-- **Votre nom, votre formation, la date de l’oral, votre photo :** dans `config.js` uniquement. Pour la photo, déposez `photo.jpg` dans `assets/img/` et écrivez `photo: "assets/img/photo.jpg",`.
-- **Un texte du dossier :** dans `index.html`, cherchez la phrase (Ctrl+F ou Cmd+F) et remplacez-la. Ne touchez pas aux balises entre `< >`.
-- **Les emplacements à compléter** sont entre crochets `[ … ]` et surlignés en jaune sur la page. Remplacez le texte, puis supprimez `class="a-completer"` pour retirer le surlignage.
-- **Une image :** remplacez le fichier dans `assets/img/` en gardant exactement le même nom.
-- **Une nouvelle section :** copiez un bloc `<section id="…" data-titre="…">` … `</section>` et changez `id` et `data-titre`. Le menu s’ajoute tout seul.
+- **Les textes d’une fiche** (composition, science, conseils, fin de vie) : ouvrez `assets/fiches.js` (sur GitHub, cliquez sur le fichier puis sur l’icône crayon). Chaque modèle a son bloc : `antiadhesive`, `ceramique`, `inox`. Modifiez uniquement le texte entre guillemets, puis cliquez sur **Commit changes**.
+- **Les emplacements entre crochets** `[ … ]` (taux d’aluminium recyclé, lieu de fabrication, résultats d’analyse…) sont des données que seule la marque peut fournir. Laissez-les tels quels pour la maquette : ils montrent au jury ce que Tefal devra publier.
+- **Le comparatif « Je prends laquelle ? »** se modifie directement dans `index.html` (cherchez « Je prends laquelle »).
+- **Les sources** de l’onglet Science sont en bas de `assets/fiches.js`.
 
-Après chaque modification, renvoyez le fichier modifié sur GitHub (ou glissez à nouveau le dossier sur Netlify). **Le QR code ne change pas tant que l’adresse reste la même** : un passeport déjà imprimé reste valable.
+**Le QR code ne change pas tant que l’adresse reste la même** : des étiquettes déjà imprimées restent valables après chaque modification.
 
-## État actuel (21 novembre 2026)
+## Mettre à jour le site existant
 
-- **Adresse configurée :** `https://chomettecelia3-dev.github.io/Projet-Tefal/`. Le QR code, `passeport-A4.pdf` et le dossier `qr/` pointent déjà vers cette adresse.
-- **Date de l’oral :** jeudi 26 novembre 2026.
-- **Compétences :** les n° 4 et 8 reprennent les intitulés cités dans le dossier (annexe P). Les autres sont décrites comme des savoir-faire, sans numéro officiel.
-- **Pas de photo ni de contact :** les initiales « CC » s’affichent à la place de la photo. La page demande aux moteurs de recherche de ne pas la référencer.
+Les nouveaux fichiers remplacent les anciens.
 
 ### Mise en ligne sur le dépôt Projet-Tefal
 
 1. Décompressez `dossier-oral.zip` sur votre ordinateur, puis ouvrez le dossier `dossier-oral`.
-2. Sur github.com/chomettecelia3-dev/Projet-Tefal, cliquez sur **uploading an existing file** (ou **Add file → Upload files**).
+2. Ouvrez https://github.com/chomettecelia3-dev/Projet-Tefal/upload/main (connecté·e à votre compte).
 3. Sélectionnez **tout ce qu’il y a dans** `dossier-oral` (`index.html`, `config.js`, `passeport.html`, `assets`, `qr`…) et glissez-le dans la page. `index.html` doit se retrouver à la racine du dépôt, pas dans un sous-dossier.
 4. Cliquez sur **Commit changes**.
 5. Allez dans **Settings → Pages**. Dans « Build and deployment », choisissez **Deploy from a branch**, puis la branche **main** et le dossier **/(root)**, et cliquez sur **Save**.
-6. Après une à deux minutes, ouvrez `https://chomettecelia3-dev.github.io/Projet-Tefal/` : le dossier doit s’afficher. Scannez ensuite le passeport imprimé avec deux téléphones, dont un en 4G.
+6. Après une à deux minutes, ouvrez `https://chomettecelia3-dev.github.io/Projet-Tefal/` : le passeport produit doit s’afficher (rechargez la page si l’ancienne version apparaît encore). Scannez ensuite le passeport imprimé avec deux téléphones, dont un en 4G.
 
 ## Crédits
 

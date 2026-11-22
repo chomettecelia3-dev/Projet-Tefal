@@ -1,0 +1,86 @@
+/* =====================================================================
+   PRODUIT.CSS — apparence du passeport produit (pensé pour téléphone)
+   Les couleurs se changent ici, dans les variables.
+   ===================================================================== */
+:root {
+  --rouge: #D7141E;
+  --encre: #17120F;
+  --creme: #F3EDE3;
+  --papier: #FFFFFF;
+  --sable: #E6DFD3;
+  --doux: #4A433D;
+  --vert-fond: #E3F1E7; --vert-texte: #1F6B3A;
+  --rouge-fond: #FDE7E7; --rouge-texte: #B00E17;
+  --police: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; font-family: var(--police); font-size: 16px; line-height: 1.5; color: var(--encre); background: var(--creme); padding-bottom: 92px; }
+h1, h2 { margin: 0; line-height: 1.15; }
+p { margin: 0 0 .6em; }
+.petit { font-size: .88rem; color: var(--doux); }
+
+/* Bandeau « maquette » */
+.maquette { margin: 0; background: #FFF2A8; color: #5a4a00; font-size: .78rem; font-weight: 600; text-align: center; padding: 6px 10px; }
+
+/* En-tête sombre (comme la maquette de l'annexe H) */
+.tete { background: var(--encre); color: #fff; padding: 18px 18px 14px; }
+.sur { font-size: .72rem; letter-spacing: .14em; color: #b9b0a6; font-weight: 700; margin-bottom: 6px; }
+.tete h1 { font-size: 1.65rem; font-weight: 850; letter-spacing: -.01em; }
+.ref { font-size: .85rem; color: #d9d1c7; margin: 6px 0 12px; }
+.modeles { display: flex; gap: 6px; }
+.modeles a { flex: 1; text-align: center; text-decoration: none; font-size: .82rem; font-weight: 700; color: #d9d1c7; border: 1px solid #3a332e; border-radius: 999px; padding: 6px 4px; }
+.modeles a.actif { background: #fff; color: var(--encre); border-color: #fff; }
+
+main { max-width: 560px; margin: 0 auto; padding: 14px; }
+
+/* Cartes */
+.carte { background: var(--papier); border: 1px solid var(--sable); border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+.carte h2, .carte h3 { font-size: 1.02rem; font-weight: 800; margin: 0; }
+.ligne-titre { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+.badge { font-size: .74rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.badge.rouge { background: var(--rouge-fond); color: var(--rouge-texte); }
+.badge.vert { background: var(--vert-fond); color: var(--vert-texte); }
+.badge.neutre { background: var(--creme); color: var(--doux); }
+
+/* Ma poêle */
+.ma-poele label { display: block; font-size: .85rem; font-weight: 700; margin-bottom: 4px; }
+.ma-poele input { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid var(--sable); border-radius: 10px; background: var(--creme); margin-bottom: 10px; }
+.infos-achat { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.infos-achat div { background: var(--creme); border-radius: 10px; padding: 8px 10px; }
+.infos-achat b { display: block; font-size: 1.05rem; }
+.infos-achat span { font-size: .78rem; color: var(--doux); }
+
+/* Onglets */
+.onglets { display: flex; gap: 6px; overflow-x: auto; margin: 4px 0 12px; scrollbar-width: none; }
+.onglets::-webkit-scrollbar { display: none; }
+.onglets button { flex: 1 0 auto; font: inherit; font-size: .8rem; font-weight: 700; border: 0; border-radius: 999px; padding: 8px 9px; background: var(--sable); color: var(--encre); cursor: pointer; }
+.onglets button[aria-selected="true"] { background: var(--rouge); color: #fff; }
+
+/* Science : deux colonnes autorités / vigilance */
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.deux div { background: var(--creme); border-radius: 10px; padding: 10px; font-size: .88rem; }
+.deux b { display: block; margin-bottom: 4px; }
+.sources a { color: var(--rouge); }
+.sources li { margin-bottom: 4px; font-size: .88rem; }
+
+/* Listes de conseils */
+.conseils { margin: 8px 0 0; padding-left: 1.2em; }
+.conseils li { margin-bottom: 6px; }
+
+/* Comparateur */
+.tableau { overflow-x: auto; margin-top: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--sable); vertical-align: top; }
+thead th { font-size: .78rem; }
+tbody th { color: var(--doux); font-weight: 700; }
+
+/* Bouton fixe en bas */
+.action { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 14px 16px; background: linear-gradient(transparent, var(--creme) 30%); }
+.bouton { display: block; width: 100%; max-width: 560px; margin: 0 auto; font: inherit; font-weight: 800; color: #fff; background: var(--rouge); border: 0; border-radius: 12px; padding: 14px; cursor: pointer; }
+
+.pied { max-width: 560px; margin: 0 auto; padding: 0 16px 20px; font-size: .78rem; color: var(--doux); }
+
+@media (min-width: 720px) {
+  .tete { padding: 24px calc(50% - 266px) 16px; }
+}
